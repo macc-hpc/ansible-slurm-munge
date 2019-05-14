@@ -1,0 +1,16 @@
+---
+
+galaxy_info:
+  author: ruimiguel
+  description: Slurm Munge Installation
+  company: MACC
+  license: MIT
+  min_ansible_version: 2.4
+  platforms:
+    - name: CentOS
+      versions:
+        - all
+  galaxy_tags:
+    - slurm
+    - munge
+dependencies: []

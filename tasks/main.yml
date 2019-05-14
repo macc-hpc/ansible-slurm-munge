@@ -1,0 +1,32 @@
+---
+
+- name: install OpenHPC repository
+  yum:
+    name: "https://github.com/openhpc/ohpc/releases/download/v{{ munge_ohpc_version }}.GA/ohpc-release-{{ munge_ohpc_version }}-1.el7.x86_64.rpm"
+  tags: slurm
+
+- name: install packages
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - slurm-munge-ohpc
+  tags: slurm
+
+- name: create Munge key
+  copy:
+    content: "{{ munge_key }}"
+    dest: /etc/munge/munge.key
+    owner: munge
+    group: munge
+    mode: 0600
+  notify: restart munge
+  no_log: true
+  tags: slurm
+
+- name: start and enable Munge
+  service:
+    name: munge
+    state: started
+    enabled: yes
+  tags: slurm

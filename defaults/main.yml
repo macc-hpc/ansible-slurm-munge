@@ -1,0 +1,4 @@
+---
+
+munge_key: "secret munge key content with enough amount of data..."
+munge_ohpc_version: 1.3
